@@ -16,7 +16,7 @@ fetch(apiUrl)
 
         console.log(users);
 
-        const usersList = document.getElementById('users-list');
+        const usersList = document.getElementById('users');
 
         const fragment = document.createDocumentFragment();
 
@@ -31,3 +31,38 @@ fetch(apiUrl)
     .catch(error => {
         console.error('Ошибка:', error);
     });
+
+
+// Указываем URL API для получения случайной картинки собаки
+const apiUrl2 = 'https://dog.ceo/api/breeds/image/random';
+
+const imageContainer = document.getElementById('images');
+
+let count = 0;
+
+function drawDogImage() {
+    fetch(apiUrl2)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Ошибка при получении данных');
+            }
+        })
+        .then(data => {
+            const imageUrl = data.message;
+            const image = document.createElement('img');
+            image.src = imageUrl;
+            imageContainer.appendChild(image);
+            count++;
+            if (count < 10) {
+                setTimeout(drawDogImage, 3000);
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка:', error);
+        });
+}
+
+// Вызываем функцию для начала отрисовки
+drawDogImage();
