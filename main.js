@@ -32,8 +32,6 @@ fetch(apiUrl)
         console.error('Ошибка:', error);
     });
 
-
-// Указываем URL API для получения случайной картинки собаки
 const apiUrl2 = 'https://dog.ceo/api/breeds/image/random';
 
 const imageContainer = document.getElementById('images');
@@ -64,5 +62,4 @@ function drawDogImage() {
         });
 }
 
-// Вызываем функцию для начала отрисовки
 drawDogImage();
